@@ -6,7 +6,7 @@ current_port=$(grep -Eo '^[^#]*Port[[:space:]]+[0-9]+' /etc/ssh/sshd_config | aw
 echo "Your SSH port is: $current_port"
 
 # Read the new SSH port number entered by the user
-read -p "Please enter a new SSH port number: " new_port
+read -p "Please enter a new SSH port : " new_port
 
 # Open the new SSH port in the firewall
 sudo ufw allow $new_port
