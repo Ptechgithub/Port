@@ -28,7 +28,7 @@ cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 
 # Modify the port number in the SSH configuration file
 for port in "${current_ports[@]}"; do
-    sed -i "s/Port $port/Port $new_port/g" /etc/ssh/sshd_config
+    sed -i "s/#Port $port/Port $new_port/g" /etc/ssh/sshd_config
 done
 
 # Restart the SSH service
