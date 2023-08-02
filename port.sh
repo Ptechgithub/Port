@@ -12,8 +12,11 @@ read -p "Please enter a new SSH port number: " new_port
 # Backup the original SSH configuration file
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 
-# Remove the # sign from the beginning of the port number (if present)
-sed -i "s/#\?Port $current_port/Port $new_port/g" /etc/ssh/sshd_config
+# Remove the # sign from the beginning of the Port line (if present)
+sed -i "s/^#Port/Port/" /etc/ssh/sshd_config
+
+# Set the new port number
+sed -i "s/^Port .*/Port $new_port/" /etc/ssh/sshd_config
 
 # Restart the SSH service
 systemctl restart sshd.service
