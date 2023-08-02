@@ -12,6 +12,8 @@ read -p "Please enter a new SSH port (1_65535): " new_port
 # Backup the original SSH configuration file
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 
+sudo ufw allow $new_port
+
 # Remove the # sign from the beginning of the Port line (if present)
 sed -i "s/^#Port/Port/" /etc/ssh/sshd_config
 
