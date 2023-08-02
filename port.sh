@@ -3,7 +3,7 @@
 # Get the current SSH port from the SSH configuration file
 current_port=$(grep -Eo '^[^#]*Port[[:space:]]+[0-9]+' /etc/ssh/sshd_config | awk '{print $2}')
 
-echo "The current SSH port is: $current_port"
+echo "Your SSH port is: $current_port"
 
 # Read the new SSH port number entered by the user
 read -p "Please enter a new SSH port number: " new_port
