@@ -1,15 +1,13 @@
 #!/bin/bash
 
-# Get the current SSH ports from the SSH configuration file (ignoring lines starting with #Port)
-current_ports=($(grep -Eov '^[[:space:]]*#Port[[:space:]]+[0-9]+' /etc/ssh/sshd_config | grep -Eo '^[^#]*Port[[:space:]]+[0-9]+' | awk '{print $2}'))
+# Get the current SSH ports from the SSH configuration file
+current_ports=($(grep -Eo '^[^#]*Port[[:space:]]+[0-9]+' /etc/ssh/sshd_config | awk '{print $2}'))
 
 # Display the current SSH ports
 if [ "${#current_ports[@]}" -eq 1 ]; then
     echo "Your SSH port is: ${current_ports[0]}"
-elif [ "${#current_ports[@]}" -gt 1 ]; then
-    echo "Your SSH ports are: ${current_ports[@]}"
 else
-    echo "No valid SSH port found in the configuration file."
+    echo "Your SSH ports are: ${current_ports[@]}"
 fi
 
 # Read the new SSH port number entered by the user
