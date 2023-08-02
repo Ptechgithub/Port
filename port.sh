@@ -18,6 +18,9 @@ sed -i "s/^#Port/Port/" /etc/ssh/sshd_config
 # Set the new port number
 sed -i "s/^Port .*/Port $new_port/" /etc/ssh/sshd_config
 
+# Allow the new SSH port in UFW
+ufw allow $new_port
+
 # Restart the SSH service
 systemctl restart sshd.service
 
