@@ -23,7 +23,7 @@ read -p "Please enter a new SSH port: " new_port
 
 # Check if the new port is a valid integer
 if ! [[ "$new_port" =~ ^[0-9]+$ ]]; then
-    echo "Invalid port number. Please enter a valid integer for the SSH port."
+    echo "Invalid port number. Please enter a valid integer for the SSH port. from :1 _ 65535"
     exit 1
 fi
 
