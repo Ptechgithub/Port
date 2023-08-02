@@ -17,5 +17,5 @@ sed -i "s/Port $current_port/Port $new_port/g" /etc/ssh/sshd_config
 # Restart the SSH service
 systemctl restart sshd.service
 
-echo "The SSH port has been changed from $current_port to $new_port. \n Please log in with the new port. If you cannot log in, please check whether the firewall allows $new_port."
+echo -e "The SSH port has been changed from $current_port to $new_port. \n Please log in with the new port. If you cannot log in, please check whether the firewall allows $new_port."
  
