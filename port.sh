@@ -5,8 +5,9 @@ current_ports=($(grep -Eo '^[^#]*Port[[:space:]]+[0-9]+' /etc/ssh/sshd_config | 
 
 # Check if there is more than one port
 if [ "${#current_ports[@]}" -gt 1 ]; then
-    # Display the current SSH ports
-    echo "Your current SSH ports are: ${current_ports[*]}"
+    # Display the current SSH ports separated by &
+    joined_ports=$(IFS=&; echo "${current_ports[*]}")
+    echo "Your current SSH ports are: $joined_ports"
 
     # Read the port number to change from the user
     read -p "Please enter the SSH port number you want to change: " selected_port
