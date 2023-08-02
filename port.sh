@@ -8,6 +8,12 @@ echo "Your SSH port is: $current_port"
 # Read the new SSH port number entered by the user
 read -p "Please enter a new SSH port : " new_port
 
+# Check if the new port is different from the current port
+if [ "$new_port" -eq "$current_port" ]; then
+    echo "The new port cannot be the same as the current port. Please enter a different SSH port."
+    read -p "Please enter a new SSH port : " new_port
+fi
+
 # Open the new SSH port in the firewall
 sudo ufw allow $new_port
 echo "Port $new_port is now allowed in the firewall."
