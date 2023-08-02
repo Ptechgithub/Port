@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the current SSH port number
-current_port=$(grep -oP "(?<=Port ).*" /etc/ssh/sshd_config)
+current_port=$(grep -oP "(?<=Port )\S+" /etc/ssh/sshd_config)
 
 # Display the current SSH port
 echo "Current SSH port: $current_port"
@@ -12,7 +12,7 @@ read -p "Please enter a new SSH port number: " new_port
 # Backup the original SSH configuration file
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 
-# Modify the port number in the SSH configuration file
+# Remove the # sign from the beginning of the port number (if present)
 sed -i "s/#\?Port $current_port/Port $new_port/g" /etc/ssh/sshd_config
 
 # Restart the SSH service
